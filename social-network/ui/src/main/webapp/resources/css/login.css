@@ -1,0 +1,686 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    height: 100%;
+    overflow: auto;
+}
+
+body {
+    --page-background: rgba(138, 139, 125, 0.4);
+    --container-background: linear-gradient(135deg, rgb(3, 124, 180) 30%, rgb(61, 161, 207));
+    --container-border: 1px solid darkgray;
+    --container-shadow: 0px 0px 15px gray;
+    --header-background: var(--container-background);
+    --inner-content-background: white;
+    --input-background: rgba(193, 194, 189, 0.2);
+    --input-invalid-background: rgba(252, 208, 208, 0.5);
+    --input-light-border: 1px solid rgba(255, 255, 255, 0.4);
+    --input-dark-border: 1px solid lightgray;
+    --text-primary-color: black; 
+    --text-secondary-color: white;
+    --text-default-shadow: 0 0 1px black;
+    --warning-text-color: red;
+    --button-default-background: rgb(45, 106, 146);
+    --button-hover-background: rgb(71, 151, 226);
+    --button-border: 1px solid lightblue;
+    --modal-background: rgba(0, 0, 0, 0.5);
+    --modal-window-border: 1px solid rgb(3, 124, 180);
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--page-background);
+    
+}
+
+/********************* MODAL NOTIFICATION *********************/
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-background);
+    z-index: 100;
+}
+
+.modal > .modal-window {
+    width: 400px;
+    margin: 250px auto 0;
+    border: var(--modal-window-border);
+    border-radius: 10px;
+    background-color: var(--text-secondary-color);
+    overflow: auto;
+}
+
+.modal > .modal-window > .header {
+    height: 35px;
+    width: 100%;
+    padding: 5px 8px;
+    background-image: var(--header-background);
+    cursor: default;
+    user-select: none;
+}
+
+.modal > .modal-window > .header > .description {
+    color: var(--text-secondary-color);
+    text-shadow: var(--text-default-shadow);
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.modal > .modal-window > .modal-message {
+    margin: 20px 15px;
+    font-size: 18px;
+    font-weight: 400;
+    hyphens: auto;
+    overflow-wrap: break-word;
+}
+
+.modal > .modal-window > .close-btn {
+    display: block;
+    width: 90px;
+    height: 45px;
+    margin: 30px auto 15px;
+    padding: 3px 6px;
+    border: var(--button-border);
+    border-radius: 10px;
+    color: var(--text-secondary-color);
+    text-shadow: var(--text-default-shadow);
+    font-size: 20px;
+    font-weight: 500;
+    background-color: var(--button-default-background);
+    cursor: pointer;
+    user-select: none;
+}
+
+.modal > .modal-window > .close-btn:hover {
+    background-color: var(--button-hover-background);
+}
+
+/***************************** LOGIN PAGE *****************************/
+.login-page .container {
+    width: 450px;
+    height: 540px;
+    margin: 45px auto 0;
+    border-radius: 10px;
+    background-image: var(--container-background);
+    box-shadow: var(--container-shadow);
+    overflow: auto; 
+}
+
+.login-page .container > .logo {
+    display: block;
+    margin: 15px 0;
+    color: var(--text-secondary-color);
+    font-size: 80px;
+    font-weight: 500;
+    text-shadow: 0 0 3px black;
+    text-align: center;
+    cursor: default;
+}
+
+.login-page .container > .page-name {
+    margin: 15px 0 10px;
+    color: var(--text-secondary-color);
+    font-size: 32px;
+    font-weight: 500;
+    text-shadow: 0 0 2px black;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: default;
+    user-select: none;
+}
+
+.login-page .container > .form {
+    height: 320px;    
+    margin: 10px 30px 15px;
+    padding: 20px 10px;
+    border: 2px solid lightgray;
+    border-radius: 20px;
+}
+
+.login-page .container > .form > .form-item {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+    margin: 20px 0 5px 30px;
+}
+
+.login-page .container > .form > .form-item > .form-icon {
+    display: inline-block;
+    color: var(--text-secondary-color);
+    font-size: 24px;
+    font-weight: 400;
+    text-shadow: var(--text-default-shadow);
+    cursor: default;
+    user-select: none;
+}
+
+.login-page .container > .form > .form-item > input[type=text], 
+.login-page .container > .form > .form-item > input[type=password] {
+    width: 250px;
+    height: 30px;
+    padding: 3px 5px;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-secondary-color);
+    text-shadow: var(--text-default-shadow);
+    background-color: var(--input-background);
+    border: 0;
+    border-bottom: var(--input-light-border);
+    outline: none;
+}
+
+.login-page .container .custom-link {
+    color: var(--text-secondary-color);
+    font-size: 16px;
+    font-weight: 400;
+    text-shadow: var(--text-default-shadow);
+}
+
+.login-page .container > .form > .password-change {
+    margin: 12px 0  0 32px;
+}
+
+.login-page .container > .form > .signin-btn {
+    display: block;
+    width: 100px;
+    height: 40px;
+    margin: 60px auto;
+    color: var(--text-secondary-color);
+    text-shadow: var(--text-default-shadow);
+    font-size: 20px;
+    font-weight: 500;
+    background-color: var(--button-default-background);
+    border: var(--button-border);
+    border-radius: 10px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.login-page .container > .form > .signin-btn:hover {
+    background-color: var(--button-hover-background);
+}
+
+.login-page .container > .signup-invitation {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;   
+    gap: 10px; 
+}
+
+.login-page .container > .signup-invitation > .description {
+    color: var(--text-secondary-color);
+    font-size: 16px;
+    font-weight: 400;
+    text-shadow: var(--text-default-shadow);
+    cursor: default;
+    user-select: none;
+}
+
+/***************************** SIGNUP PAGE *****************************/
+.signup-page .main-container {
+    width: fit-content;
+    margin: 25px auto 0;
+    border-radius: 20px;
+    background-image: var(--container-background);
+    box-shadow: var(--container-shadow);
+    overflow: auto;
+}
+
+.signup-page .main-container > .page-name {
+    margin: 20px 0;
+    color: var(--inner-content-background);
+    text-shadow: 0 0 3px black;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 48px;
+    font-weight: 500;
+    cursor: default;
+}
+
+.signup-page .main-container > .form {
+    width: 720px;
+    margin: 20px 35px;
+    padding: 10px 15px;
+    border: 3px solid lightgray;
+    border-radius: 20px;
+    background-color: var(--inner-content-background);
+}
+
+.signup-page .main-container > .form > .horizontal-border {
+    --thickness: 3px;
+    width: 85%;
+    margin: 20px auto 10px;
+    border-top: var(--thickness) dashed darkgray;
+    border-radius: 10px;
+}
+
+.signup-page .main-container > .form > section > .section-name {
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: default;
+}
+
+.signup-page .main-container > .form > section > .inputs-row-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    width: 49%;
+}
+
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item > label {
+    font-size: 18px;
+    font-weight: 400;
+    cursor: default;
+    user-select: none;
+}
+
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item >  input {
+    font-size: 18px;
+    font-weight: 400;
+    height: 30px;
+    outline: none;
+}
+
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item > input[type=text],
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item > input[type=password] {
+    width: 180px;
+    padding: 3px 5px;
+    border: var(--input-dark-border);
+    background-color: var(--input-background);
+}
+
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item > input[type=date]{
+    font-size: 20xp;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item > input.invalid-input {
+    background-color: var(--input-invalid-background);
+}
+
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item > select {
+    height: 30px;
+    padding: 2px;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item > #e-mail {
+    width: 220px;
+}
+
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item > #phone {
+    width: 160px;
+}
+
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item > #country, 
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item > #city {
+    width: 180px;
+}
+
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item > #avatar {
+    width: 215px;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+}
+.signup-page .main-container > .form > section > .inputs-row-container > .form-item > #avatar-reset-btn {
+    height: 30px;
+    padding: 2px;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.signup-page .main-container > .form > section > .warning-container {
+    display: none;
+}
+
+.signup-page .main-container > .form > section > .warning-container.visible {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 7px 0;
+}
+
+.signup-page .main-container > .form > section > .warning-container > .warning {
+    display: block;
+    width: 49%;
+    visibility: hidden;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--warning-text-color);
+    hyphens: auto;
+}
+
+.signup-page .main-container > .form > section > .warning-container > .warning.visible {
+    visibility: visible;
+}
+
+.signup-page .main-container > .submit-btn {
+    display: block;
+    height: 45px;
+    margin: 30px auto 35px;
+    padding: 3px 6px;
+    color:var(--text-secondary-color);
+    font-size: 20px;
+    font-weight: 500;
+    text-shadow: var(--text-default-shadow);
+    border: var(--button-border);
+    border-radius: 10px;
+    background-color: var(--button-default-background);
+    cursor: pointer;
+    user-select: none;
+}
+
+.signup-page .main-container > .submit-btn:hover {
+    background-color: var(--button-hover-background);
+}
+
+/***************************** VALIDATION PAGES *****************************/
+.validation-page .container {
+    width: 500px;
+    max-width: 500px;
+    margin: 80px auto 0;
+    border: var(--container-border);
+    border-radius: 10px;
+    box-shadow: var(--container-shadow);
+    background-color: var(--inner-content-background);
+    cursor: default;
+    user-select: none;
+    overflow: auto;
+}
+
+.validation-page .container > .header {
+    width: 100%;
+    height: 40px;
+    max-height: 40px;
+    padding: 5px 8px;
+    background-image: var(--header-background);
+    border-bottom: var(--container-border);
+}
+
+.validation-page .container > .header > .page-name {
+    color: var(--text-secondary-color);
+    text-shadow: var(--text-default-shadow);
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.validation-page .container > .form {
+    margin: 15px 20px;
+}
+
+.validation-page .container > .form > label {
+    display: block;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.validation-page .container > .form > input[type=text],
+.validation-page .container > .form > input[type=password] {
+    width: 150px;
+    height: 30px;
+    padding: 3px 5px;
+    font-size: 18px;
+    font-weight: 400;
+    border: var(--input-dark-border);
+    background-color: var(--input-background);
+    outline: none;
+}
+
+.validation-page .container > .form > .question {
+    margin-bottom: 10px;
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: default;
+    hyphens: auto;
+}
+
+.validation-page .container > .form > .submit-btn {
+    display:block;
+    height: 45px;
+    margin: 15px auto;
+    padding: 3px 6px;
+    color: var(--text-secondary-color);
+    font-size: 20px;
+    font-weight: 500;
+    text-shadow: var(--text-default-shadow);
+    border: var(--button-border);
+    border-radius: 10px;
+    background-color: var(--button-default-background);
+    cursor: pointer;
+    user-select: none;
+}
+
+.validation-page .container > .form > .submit-btn:hover {
+    background-color: var(--button-hover-background);
+}
+
+/***************************** CHANGE PASSWORD PAGE *****************************/
+.change-password-page .container {
+    width: 450px;
+    margin: 80px auto 0;
+    border: var(--container-border);
+    border-radius: 10px;
+    box-shadow: var(--container-shadow);
+    background-color: var(--text-secondary-color);
+    overflow: auto;
+}
+
+.change-password-page .container > .header {
+    max-height: 40px;
+    width: 100%;
+    padding: 5px 8px;
+    background-image: var(--header-background);
+    border-bottom: var(--container-border);
+    cursor: default;
+}
+
+.change-password-page .container > .header > .page-name {
+    color: var(--text-secondary-color);
+    text-shadow: var(--text-default-shadow);
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.change-password-page .container > .form {
+    margin: 15px 20px;
+}
+
+.change-password-page .container > .form > label {
+    display: block;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.change-password-page .container > .form > input[type=password] {
+    width: 250px;
+    height: 30px;
+    margin-bottom: 5px;
+    padding: 3px 5px;
+    font-size: 18px;
+    font-weight: 400;
+    border: var(--input-dark-border);
+    background-color: var(--input-background);
+    outline: none;
+}
+
+.change-password-page .container > .form > input.invalid-input {
+    background-color: var(--input-invalid-background);
+}
+
+.change-password-page .container > .form > .warning-container {
+    display: none;
+}
+
+.change-password-page .container > .form > .warning-container.visible {
+    display: block;
+}
+
+.change-password-page .container > .form > .warning-container > .warning {
+    display: block;
+    margin: 2px 0;
+    visibility: hidden;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--warning-text-color);
+    hyphens: auto;
+}
+
+.change-password-page .container > .form > .warning-container > .warning.visible {
+    visibility: visible;
+}
+
+.change-password-page .container > .form > .submit-btn {
+    display:block;
+    height: 45px;
+    margin: 15px auto;
+    padding: 3px 6px;
+    color: var(--text-secondary-color);
+    text-shadow: var(--text-default-shadow);
+    font-size: 20px;
+    font-weight: 500;
+    border: var(--button-border);
+    border-radius: 10px;
+    background-color: var(--button-default-background);
+    cursor: pointer;
+    user-select: none;
+}
+
+.change-password-page .container > .form > .submit-btn:hover {
+    background-color: var(--button-hover-background);
+}
+
+/***************************** ERROR PAGE *****************************/
+.error-page .main-container {
+    width: 450px;
+    margin: 80px auto 0;
+    border: var(--container-border);
+    border-radius: 10px;
+    box-shadow: var(--container-shadow);
+    background-color: var(--inner-content-background);
+    overflow: auto;
+}
+
+.error-page .main-container > .header {
+    max-height: 40px;
+    width: 100%;
+    padding: 5px 8px;
+    background-image: var(--header-background);
+    border-bottom: var(--container-border);
+}
+
+.error-page .main-container > .header > .page-name {
+    color: var(--text-secondary-color);
+    text-shadow: var(--text-default-shadow);
+    font-size: 26px;
+    font-weight: 700;
+    cursor: default;
+    user-select: none;
+}
+
+.error-page .main-container > .message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 15px;
+    min-height: 100px;
+}
+
+.error-page .main-container > .message-container > .message {
+    font-size: 20px;
+    font-weight: 400;
+    cursor: default;
+    user-select: none;
+    hyphens: auto;
+}
+
+/***************************** BLOCKED PAGE *****************************/
+.blocked-page .container {
+    width: 450px;
+    margin: 80px auto 0;
+    border: var(--container-border);
+    border-radius: 10px;
+    box-shadow: var(--container-shadow);
+    background-color: var(--inner-content-background);
+    overflow: auto;
+}
+
+.blocked-page .container > .header {
+    max-height: 40px;
+    width: 100%;
+    padding: 5px 8px;
+    background-image: var(--header-background);
+    border-bottom: var(--container-border);
+}
+
+.blocked-page .container > .header > .page-name {
+    color: var(--text-secondary-color);
+    text-shadow: var(--text-default-shadow);
+    font-size: 26px;
+    font-weight: 700;
+    cursor: default;
+    user-select: none;
+}
+
+.blocked-page .container > .message {
+    margin: 20px 15px;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: default;
+    user-select: none;
+    hyphens: auto;
+}
+
+.blocked-page .container > .redirect-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 45px;
+    margin: 30px auto 15px;
+    padding: 3px 6px;
+    border: var(--button-border);
+    border-radius: 10px;
+    background-color: var(--button-default-background);
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.blocked-page .container > .redirect-btn > .description {
+    color: var(--text-secondary-color);
+    text-shadow: var(--text-default-shadow);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.blocked-page .container > .redirect-btn:hover {
+    background-color: var(--button-hover-background);
+}

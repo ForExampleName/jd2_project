@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <changeSet id="1" author="peter">
+        <sql>
+            CREATE TABLE user (
+            id varchar(255) NOT NULL,
+            creation_time datetime(6) NOT NULL,
+            login varchar(255) NOT NULL UNIQUE,
+            PRIMARY KEY (id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="peter">
+        <sql>
+            CREATE TABLE user_status (
+            id varchar(255) NOT NULL,
+            creation_time datetime(6) NOT NULL,
+            status varchar(255) NOT NULL,
+            user_id varchar(255) NOT NULL,
+            PRIMARY KEY (id),
+            FOREIGN KEY (user_id) REFERENCES user (id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="peter">
+        <sql>
+            CREATE TABLE user_role (
+            id varchar(255) NOT NULL,
+            creation_time datetime(6) NOT NULL,
+            role varchar(255) NOT NULL,
+            user_id varchar(255) NOT NULL,
+            PRIMARY KEY (id),
+            FOREIGN KEY (user_id) REFERENCES user (id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+        </sql>
+    </changeSet>
+    <changeSet id="4" author="peter">
+        <sql>
+            CREATE TABLE authentication_info (
+            id varchar(255) NOT NULL,
+            creation_time datetime(6) NOT NULL,
+            password varchar(255) NOT NULL,
+            user_id varchar(255) NOT NULL,
+            PRIMARY KEY (id),
+            FOREIGN KEY (user_id) REFERENCES user (id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+        </sql>
+    </changeSet>
+    <changeSet id="5" author="peter">
+        <sql>
+            CREATE TABLE secret_question (
+            id bigint(20) NOT NULL AUTO_INCREMENT,
+            question varchar(255) NOT NULL,
+            PRIMARY KEY (id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+        </sql>
+    </changeSet>
+    <changeSet id="6" author="peter">
+        <sql>
+            CREATE TABLE user_recovery (
+            id varchar(255) NOT NULL,
+            answer varchar(255) NOT NULL,
+            creation_time datetime(6) NOT NULL,
+            question_id bigint(20) NOT NULL,
+            user_id varchar(255) NOT NULL,
+            PRIMARY KEY (id),
+            FOREIGN KEY (question_id) REFERENCES secret_question (id),
+            FOREIGN KEY (user_id) REFERENCES user (id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+        </sql>
+    </changeSet>
+    <changeSet id="7" author="peter">
+        <sql>
+            CREATE TABLE user_profile (
+            id varchar(255) NOT NULL,
+            avatar mediumblob NOT NULL,
+            birthday date NOT NULL,
+            city varchar(255) NOT NULL,
+            country varchar(255) NOT NULL,
+            creation_time datetime(6) NOT NULL,
+            email varchar(255) NOT NULL,
+            gender varchar(255) NOT NULL,
+            first_name varchar(255) NOT NULL,
+            last_name varchar(255) NOT NULL,
+            phone varchar(255) NOT NULL,
+            user_id varchar(255) NOT NULL,
+            PRIMARY KEY (id),
+            FOREIGN KEY (user_id) REFERENCES user (id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+        </sql>
+    </changeSet>
+    <changeSet id="8" author="peter">
+        <sql>
+            CREATE TABLE user_relation (
+            id varchar(255) NOT NULL,
+            follow_id varchar(255) NOT NULL,
+            user_id varchar(255) NOT NULL,
+            PRIMARY KEY (id),
+            FOREIGN KEY (user_id) REFERENCES user (id),
+            FOREIGN KEY (follow_id) REFERENCES user (id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+        </sql>
+    </changeSet>
+    <changeSet id="9" author="peter">
+        <sql>
+            CREATE TABLE record (
+            id varchar(255) NOT NULL,
+            creation_time datetime(6) NOT NULL,
+            description varchar(255) NOT NULL,
+            header varchar(255) DEFAULT NULL,
+            picture mediumblob,
+            user_id varchar(255) NOT NULL,
+            PRIMARY KEY (id),
+            FOREIGN KEY (user_id) REFERENCES user (id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+        </sql>
+    </changeSet>
+    <changeSet id="10" author="peter">
+        <sql>
+            INSERT INTO secret_question (question) VALUES ('Имя Вашего первого питомца');
+            INSERT INTO secret_question (question) VALUES ('Девичья фамилия Вашей матери');
+            INSERT INTO secret_question (question) VALUES ('Ваша любимая книга');
+            INSERT INTO secret_question (question) VALUES ('Секретная фраза');
+            INSERT INTO secret_question (question) VALUES ('Секретное число');
+        </sql>
+    </changeSet>
+</databaseChangeLog>
