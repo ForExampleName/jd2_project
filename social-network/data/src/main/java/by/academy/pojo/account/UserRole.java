@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserRole {
+public class UserRole implements Serializable {
     @Id
     @GenericGenerator(name = "uuid-generator", strategy = "uuid")
     @GeneratedValue(generator = "uuid-generator")

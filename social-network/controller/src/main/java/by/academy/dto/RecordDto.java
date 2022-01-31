@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 @Getter
 @Setter
 public class RecordDto {
-    public String id;
+    private String id;
     private String header;
     private String description;
     private String picture;

@@ -11,7 +11,7 @@ public class BaseController {
     private UserDetails userDetails;
 
     @GetMapping("/")
-    private String basePage() {
+    public String basePage() {
         if (userDetails.isAuthenticated()) {
             return "redirect:/my_page.do";
         }

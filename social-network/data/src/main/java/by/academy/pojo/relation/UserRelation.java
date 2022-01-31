@@ -7,13 +7,14 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "user_relation")
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserRelation {
+public class UserRelation implements Serializable {
     @Id
     @GenericGenerator(name = "uuid-generator", strategy = "uuid")
     @GeneratedValue(generator = "uuid-generator")
