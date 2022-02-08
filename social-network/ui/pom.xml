@@ -77,38 +77,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <!--        <plugins>-->
-        <!--            <plugin>-->
-        <!--                <groupId>org.apache.maven.plugins</groupId>-->
-        <!--                <artifactId>maven-war-plugin</artifactId>-->
-        <!--                <version>3.3.1</version>-->
-        <!--                <configuration>-->
-        <!--                    <warName>ui</warName>-->
-        <!--                </configuration>-->
-        <!--            </plugin>-->
-        <!--            <plugin>-->
-        <!--                <groupId>org.apache.tomcat.maven</groupId>-->
-        <!--                <artifactId>tomcat7-maven-plugin</artifactId>-->
-        <!--                <version>2.2</version>-->
-        <!--                <executions>-->
-        <!--                    <execution>-->
-        <!--                        <id>deployToTomcat9</id>-->
-        <!--                        <phase>install</phase>-->
-        <!--                        <goals>-->
-        <!--                            <goal>undeploy</goal>-->
-        <!--                            <goal>deploy</goal>-->
-        <!--                        </goals>-->
-        <!--                    </execution>-->
-        <!--                </executions>-->
-        <!--                <configuration>-->
-        <!--                    <username>admin</username>-->
-        <!--                    <password>admin</password>-->
-        <!--                    <warFile>target\ui.war</warFile>-->
-        <!--                    <path>/${project.build.finalName}</path>-->
-        <!--                </configuration>-->
-        <!--            </plugin>-->
-        <!--        </plugins>-->
-
         <finalName>ui</finalName>
     </build>
 </project>

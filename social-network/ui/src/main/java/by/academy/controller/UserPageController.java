@@ -36,7 +36,8 @@ public class UserPageController {
     }
 
     @GetMapping("/{userId}/{page}/user_page.html")
-    public String getUserPage(@PathVariable("userId") String userId, @PathVariable("page") Integer page,
+    public String getUserPage(@PathVariable("userId") String userId,
+                              @PathVariable("page") Integer page,
                               ModelMap model, HttpSession session) {
         if (userId.equals(userDetails.getUserId())) {
             model.addAttribute("recordCommand", new RecordCommand());

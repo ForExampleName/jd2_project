@@ -17,14 +17,6 @@ public class WebAppInit implements ServletContainerInitializer {
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("*.html", "*.do");
 
-//        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-//        filter.setEncoding("UTF-8");
-//        filter.setForceEncoding(true);
-//        FilterRegistration.Dynamic characterEncoding
-//                = servletContext.addFilter("characterEncoding", filter);
-//        EnumSet<DispatcherType> dispatcherTypes = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD);
-//        characterEncoding.addMappingForUrlPatterns(dispatcherTypes, true, "/*");
-
         int MAX_SIZE = 5 * 1024 * 1024;
         MultipartConfigElement multipartConfigElement = new MultipartConfigElement("", MAX_SIZE, MAX_SIZE, MAX_SIZE);
         dispatcher.setMultipartConfig(multipartConfigElement);

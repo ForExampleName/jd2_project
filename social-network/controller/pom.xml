@@ -10,7 +10,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>by.academy</groupId>
     <artifactId>controller</artifactId>
     <version>1.0-SNAPSHOT</version>
 

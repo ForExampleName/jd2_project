@@ -40,9 +40,6 @@ public class WebAppConfig implements WebMvcConfigurer {
         registry
                 .addInterceptor(authenticationInterceptor())
                 .excludePathPatterns(
-                        "/test/user_page.html",
-
-
                         "/",
                         "/login.html", "/login.do",
                         "/signup.html", "/signup.do",

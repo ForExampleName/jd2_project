@@ -25,7 +25,9 @@ public class RecordController {
     private Validator<RecordCommand> recordValidator;
 
     @PostMapping("/create_record.do")
-    public String createRecord(@ModelAttribute("recordCommand") RecordCommand recordCommand, HttpSession session) throws IOException {
+    public String createRecord(
+            @ModelAttribute("recordCommand") RecordCommand recordCommand,
+            HttpSession session) throws IOException {
         Optional<String> validationError = recordValidator.validate(recordCommand);
         if (validationError.isPresent()) {
             session.setAttribute("record_error", validationError.get());

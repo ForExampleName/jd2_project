@@ -94,7 +94,6 @@
                     </div>
                 </div>
             </c:if>
-            
 
             <div class="layout-block">
                 <div id="main-content" class="content-item">

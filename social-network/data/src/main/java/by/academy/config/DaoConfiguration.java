@@ -70,8 +70,6 @@ public class DaoConfiguration {
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setJpaProperties(additionalHibernateProperties);
-//        factory.afterPropertiesSet();
-//        return factory.getObject();
         return factory;
     }
 
